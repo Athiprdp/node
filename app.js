@@ -22,6 +22,9 @@ app.get("/",(req,res)=>{
     res.render("index",{ username: req.session.user ? req.session.user.username : null});
 });
 app.get("/login",(req,res)=>{
+    if(req.session.user){
+        return res.redirect("/");
+    }
     res.render("login",{ error: null });
 });
 app.post("/login",(req,res)=>{
